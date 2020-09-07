@@ -1,0 +1,4 @@
+/home/pately/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/202.6397.106/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/pately/CLionProjects/bp-EA-course
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pately/CLionProjects/bp-EA-course/cmake-build-debug

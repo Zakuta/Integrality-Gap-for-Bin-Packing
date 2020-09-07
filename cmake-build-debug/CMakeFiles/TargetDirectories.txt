@@ -1,0 +1,3 @@
+/home/pately/CLionProjects/bp-EA-course/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/pately/CLionProjects/bp-EA-course/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pately/CLionProjects/bp-EA-course/cmake-build-debug/CMakeFiles/bpsolver.dir
