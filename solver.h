@@ -2,7 +2,6 @@
 #define SOLVER_H
 
 #include "solution.h"
-#include "bpinstance.h"
 #include "gurobi_c++.h"
 
 /* Solver is an abstract class that serves as an interface for different
@@ -25,7 +24,7 @@ template <typename T>
 class Solver {
 public:
     virtual ~Solver(){}
-    virtual GRBModel * buildAndSolve(BPInstance * inst, GRBModel * model, Solution<T>& sol, GRBEnv * env) = 0;
+    virtual GRBModel * buildAndSolve(const std::vector<double> &sizeVector, GRBModel * model, Solution<T>& sol, GRBEnv * env) = 0;
 };
 
 #endif // SOLVER_H

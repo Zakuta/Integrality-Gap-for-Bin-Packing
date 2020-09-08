@@ -12,7 +12,7 @@
 class SimpleIPSolver : public Solver <unsigned>
 {
 public:
-    GRBModel * buildAndSolve(BPInstance * test, GRBModel * model,               //model has to be allocated and has to contain the Gilmore-Gomory LP.
+    GRBModel * buildAndSolve(const std::vector<double> &sizeVector, GRBModel * model,               //model has to be allocated and has to contain the Gilmore-Gomory LP.
                              Solution<unsigned> & sol, GRBEnv * env);           //The function changes each variable type to integer and optimizes again
 };                                                                              //solution is saved in sol.
 

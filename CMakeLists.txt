@@ -13,8 +13,14 @@ set(GUROBI_LIB_DIRECTORY "/home/pately/Desktop/EA-course/PA/bp-instance-generato
 
 link_directories(${GUROBI_LIB_DIRECTORY})
 
-set(SOURCE_FILES bpinstance.cpp simplelpsolver.cpp main.cpp simpleipsolver.cpp solution.cpp ${GUROBI_INCLUDE_DIRECTORY}/gurobi_c++.h ${GUROBI_LIB_DIRECTORY} helper.cpp)
-add_executable(bpsolver ${SOURCE_FILES})
+set(SOURCE_FILES simplelpsolver.cpp simpleipsolver.cpp solution.cpp ${GUROBI_INCLUDE_DIRECTORY}/gurobi_c++.h ${GUROBI_LIB_DIRECTORY} helper.cpp)
 
-target_link_libraries (bpsolver gurobi_c++)
-target_link_libraries (bpsolver gurobi90)
+#add_executable(bpsolver ${SOURCE_FILES})
+add_library(bpsolver ${SOURCE_FILES})
+add_executable(main main.cpp)
+
+#target_link_libraries (bpsolver gurobi_c++)
+#target_link_libraries (bpsolver gurobi90)
+target_link_libraries (main bpsolver)
+target_link_libraries (main gurobi_c++)
+target_link_libraries (main gurobi90)

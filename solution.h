@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "helper.h"
-#include "bpinstance.h"
 
 /*
  * Solution<T> is a class used to save and output linear and integral solutions
@@ -37,13 +36,12 @@ public:
     void resizePattern(unsigned i, unsigned n);
     void resizeAll(unsigned k);                                                    //resizes coefficients and pattern, sets size.
 
-    void saveSolution(GRBModel * model, BPInstance * test, unsigned kind);        //extracts solution from model. The type of LP/IP has to be determined by
+    void saveSolution(GRBModel * model, const std::vector<double> &sizeVector, unsigned kind);        //extracts solution from model. The type of LP/IP has to be determined by
                                                                                 //parameter kind: kind == 0: model describes full Gilmore-Gomory LP or LP
                                                                                 //created by column generation.
                                                                                 //kind == 1: model describes Gilmore-Gomory IP.
                                                                                 //kind == 2: model describes modified Kantorovich IP.
 
-    bool printToStream(ostream & output,BPInstance * test);                        //prints solution (Remark: does not output opt)
 };
 #define SOLUTION_FUNCTIONS
 #include "solution.cpp"

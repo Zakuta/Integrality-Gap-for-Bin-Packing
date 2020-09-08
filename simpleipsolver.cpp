@@ -3,36 +3,35 @@
 
 #define TYPE 1
 
-GRBModel * SimpleIPSolver::buildAndSolve(BPInstance * test, GRBModel * model,
+GRBModel * SimpleIPSolver::buildAndSolve(const std::vector<double> &sizeVector, GRBModel * model,
                                          Solution<unsigned> & sol, GRBEnv * env)
 {
     try{
+        unsigned nrOfItems = sizeVector.size();
         model->reset();                                                         //resets model to pre-optimized state
         unsigned varNumber = model->get(GRB_IntAttr_NumVars);                   //get number of variables in model
         for(unsigned i = 0; i < varNumber; i++) {
             model->getVarByName(NumberToString(i)).set(GRB_CharAttr_VType,'I'); //set each variable to integer
         }
-        for(unsigned i = 0; i < test->getNrOfItems(); i++) {
-            if(test->getMult(i)>0) {
-                model->getConstrByName(NumberToString(i)).set(GRB_CharAttr_Sense, GRB_GREATER_EQUAL);
-            }
+        for(unsigned i = 0; i < nrOfItems; i++) {
+            model->getConstrByName(NumberToString(i)).set(GRB_CharAttr_Sense, GRB_GREATER_EQUAL);
         }
         model->update();
         model->optimize();                                                      //optimize
 
-        sol.saveSolution(model,test,TYPE);                                      //save the solution
+        sol.saveSolution(model, sizeVector, TYPE);                                      //save the solution
 
         return model;
     } catch(GRBException e) {
         cout << "Exception during modify" << endl;
         cout << "Error code = " << e.getErrorCode() << endl;
         cout << e.getMessage() << endl;
-        return NULL;
+        return nullptr;
     } catch(exception e){
         cout << e.what()<< endl;
-        return NULL;
+        return nullptr;
     } catch(...) {
         cout << "Exception during modify" << endl;
-        return NULL;
+        return nullptr;
     }
 }
