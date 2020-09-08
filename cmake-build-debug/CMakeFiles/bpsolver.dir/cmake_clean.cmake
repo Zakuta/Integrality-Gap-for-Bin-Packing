@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/bpsolver.dir/arguments.cpp.o"
   "CMakeFiles/bpsolver.dir/bpinstance.cpp.o"
   "CMakeFiles/bpsolver.dir/helper.cpp.o"
   "CMakeFiles/bpsolver.dir/main.cpp.o"

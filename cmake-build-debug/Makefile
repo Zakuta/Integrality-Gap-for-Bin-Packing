@@ -143,33 +143,6 @@ bpsolver/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bpsolver.dir/build.make CMakeFiles/bpsolver.dir/build
 .PHONY : bpsolver/fast
 
-arguments.o: arguments.cpp.o
-
-.PHONY : arguments.o
-
-# target to build an object file
-arguments.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bpsolver.dir/build.make CMakeFiles/bpsolver.dir/arguments.cpp.o
-.PHONY : arguments.cpp.o
-
-arguments.i: arguments.cpp.i
-
-.PHONY : arguments.i
-
-# target to preprocess a source file
-arguments.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bpsolver.dir/build.make CMakeFiles/bpsolver.dir/arguments.cpp.i
-.PHONY : arguments.cpp.i
-
-arguments.s: arguments.cpp.s
-
-.PHONY : arguments.s
-
-# target to generate assembly for a file
-arguments.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bpsolver.dir/build.make CMakeFiles/bpsolver.dir/arguments.cpp.s
-.PHONY : arguments.cpp.s
-
 bpinstance.o: bpinstance.cpp.o
 
 .PHONY : bpinstance.o
@@ -341,9 +314,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bpsolver"
-	@echo "... arguments.o"
-	@echo "... arguments.i"
-	@echo "... arguments.s"
 	@echo "... bpinstance.o"
 	@echo "... bpinstance.i"
 	@echo "... bpinstance.s"

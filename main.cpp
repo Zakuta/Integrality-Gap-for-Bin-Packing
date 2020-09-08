@@ -1,34 +1,30 @@
-#include "arguments.h"
 #include "simpleipsolver.h"
 #include "simplelpsolver.h"
+#include <string>
 
+#define TRUE 1
+#define FALSE 0
 
-int main(int argc, char *argv[])
+int main()
 {
-    OPTIONS args;
-    args = parseargs(argc,argv);
-    if(!args.succeededToReadArguments) {
-        cout << "Failed to read program's arguments. Exiting..." << endl;
-        return 1;
-    }
+    unsigned loud = FALSE;                        // option: enables Gurobi output
+    unsigned nodeFiles = FALSE;                 // enable use of Gurobi nodefiles to solve the IP.
+
+    string inFile;
+    cout << "Path to the input file: ";
+    cin >> inFile;
     BPInstance *inst;
-    if(!args.quiet) {
-        cout << "Generating Instance..." << endl;
-    }
-    if(!args.random) {
-        inst = new BPInstance(args.inFile);
-    }
+
+    inst = new BPInstance(inFile);
+
 
     Solver<double> *solverLP;
-    if(!args.quiet) {
-        cout << "Build and solve LP...";
-    }
     solverLP = new SimpleLPSolver();
 
     Solution<double> solLP(inst->getNrOfItems());
 
     GRBEnv *env = new GRBEnv();
-    setEnvParams(env, args.loud, args.nodefiles);
+    setEnvParams(env, loud, nodeFiles);
     GRBModel *model = new GRBModel(*env);
     model = solverLP->buildAndSolve(inst,model,solLP, env);
 
@@ -36,23 +32,14 @@ int main(int argc, char *argv[])
         cout << "LP Model is NULL!" << endl;
         return 1;
     }
-    if(!args.quiet) {
-        cout << " Finished." << endl;
-    }
 
     Solver<unsigned> *solverIP;
     Solution<unsigned> solIP;
 
-    if(!args.quiet) {
-        cout << "Build and solve IP...";
-    }
-
     solverIP = new SimpleIPSolver();
 
     model = solverIP->buildAndSolve(inst,model,solIP, env);
-    if(!args.quiet) {
-        cout << " Finished." << endl;
-    }
+
     if(model == NULL) {
         cout << "IP Model is NULL!" << endl;
         return 1;
