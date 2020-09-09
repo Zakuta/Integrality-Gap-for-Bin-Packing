@@ -3,17 +3,18 @@ project(bp-EA-course)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -m64 -g -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -m64 -g -Wall -Wextra -pedantic  -I/usr/local/include -L/usr/local/lib -lIOH")
 
-set(GUROBI_INCLUDE_DIRECTORY "/home/pately/Desktop/EA-course/PA/bp-instance-generator-solver/Gurobi/gurobi903/linux64/include")
+set(GUROBI_INCLUDE_DIRECTORY "/Library/gurobi903/mac64/include/")
 
 include_directories(${GUROBI_INCLUDE_DIRECTORY})
 
-set(GUROBI_LIB_DIRECTORY "/home/pately/Desktop/EA-course/PA/bp-instance-generator-solver/Gurobi/gurobi903/linux64/lib")
+set(GUROBI_LIB_DIRECTORY "/Library/gurobi903/mac64/lib")
+set(IOH_DIRECTORY "/usr/local/include")
 
 link_directories(${GUROBI_LIB_DIRECTORY})
 
-set(SOURCE_FILES simplelpsolver.cpp simpleipsolver.cpp solution.cpp ${GUROBI_INCLUDE_DIRECTORY}/gurobi_c++.h ${GUROBI_LIB_DIRECTORY} helper.cpp)
+set(SOURCE_FILES src/simplelpsolver.cpp src/simpleipsolver.cpp src/solution.cpp ${GUROBI_INCLUDE_DIRECTORY}/gurobi_c++.h ${GUROBI_LIB_DIRECTORY} ${IOH_DIRECTORY} src/helper.cpp src/AIG_BP.hpp)
 
 #add_executable(bpsolver ${SOURCE_FILES})
 add_library(bpsolver ${SOURCE_FILES})
