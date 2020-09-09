@@ -1,6 +1,7 @@
 #ifndef SOLUTION_FUNCTIONS
 #include "solution.h"
 
+#else
 #define LP 0
 #define SIMPLE_IP 1
 #define MOD_KANTO_IP 2
